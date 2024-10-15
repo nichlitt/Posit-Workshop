@@ -1,0 +1,48 @@
+---
+title: "Posit Workshop"
+author: "Nick L"
+format: html
+editor: visual
+---
+
+## Packages
+
+```{r}
+library(readr)
+library(dplyr)
+library(ggplot2)
+library(lubridate)
+
+
+```
+
+## Data Import
+```{r}
+claims <- read_csv("claims.csv")
+claims
+
+
+```
+
+## Data Cleaning
+```{r}
+claims_clean <- claims %>%
+  select(Id, SERVICEDATE, STATUS1, OUTSTANDING1, HEALTHCARECLAIMTYPEID1) %>%
+  filter(SERVICEDATE >= "2018-01-01" & SERVICEDATE <= "2024-12-31")
+print(claims_clean)
+ 
+```
+
+## Data Visualization
+```{r}
+ ggplot(claims_clean) +
+ aes(x = SERVICEDATE) +
+ geom_histogram(bins = 30L, fill = "#112446") +
+ theme_minimal()
+
+```
+
+## Data Analysis
+```{r}
+
+```
